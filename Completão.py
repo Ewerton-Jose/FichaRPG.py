@@ -25,50 +25,24 @@ def Atributos(x = ''):
 def lin(x = 25):
     print('-' * x)
 
-def mostraTudo(l = [], n = 0):
-    lin(25)
-    print("CARACTERISTICAS:")
-    print(f"Nome = {l[n][0][0]}")
-    print(f"Idade = {l[n][0][1]}")
-    print(f"Raça = {l[n][0][2]}")
-    print(f"Espécie = {l[n][0][3]}")
-    print(f"classe = {l[n][0][4]}")
-    print(f"Gênero = {l[n][0][5]}")
-    lin(5)
-    print(f'ATRIBUTOS:')
-    print(f"Vida = {l[n][1][0]}")
-    print(f"Atack = {l[n][1][1]}")
-    print(f"Defesa = {l[n][1][2]}")
-    print(f"Carisma = {l[n][1][3]}")
-    print(f"Bõnus de atak = {l[n][1][4]}")
-
-jogadores = []
-jogador = []
-dados = []
-atributos = []
-objetos = []
+jogadores = {}
 
 print("-" * 25)
 print("Alistamento de Personagem")
 while True:
-    dados.append(str(input("Nome do Personagem: ")))
-    dados.append(int(input("Idade: ")))
-    dados.append(str(input("Raça: ")))
-    dados.append(str(input("Espécie: ")))
-    dados.append(str(input("classe: ")))
-    dados.append(str(input("Gênero: ")))
-    jogador.append(dados[:])
-    dados.clear
+    jogadores['Nome: '] = (str(input("Nome do Personagem: ")))
+    jogadores['Idade: '] = (int(input("Idade: ")))
+    jogadores['Raça: '] = (str(input("Raça: ")))
+    jogadores['Espécie: '] = (str(input("Espécie: ")))
+    jogadores['Classe: '] = (str(input("classe: ")))
+    jogadores['Gênero: '] = (str(input("Gênero: ")))
     print("Agora vamos para os atributos do seu personagem")
     print('OBS: LD siginifica os "Lados do Dado"\nE "QD" significa "Quantos Dados"')
-    atributos.append(Atributos("Vida"))
-    atributos.append(Atributos("Atack"))
-    atributos.append(Atributos("Defesa"))
-    atributos.append(Atributos("carisma"))
-    atributos.append(Atributos("bõnus de atack"))
-    jogador.append(atributos[:])
-    atributos.clear()
-    jogadores.append(jogador[:])
-    jogador.clear
+    jogadores['Vida: '] = (Atributos("Vida"))
+    jogadores['Atack: '] = Atributos("Atack")
+    jogadores['Defesa: '] = (Atributos("Defesa"))
+    jogadores['Carisma: '] = Atributos("carisma")
+    jogadores['Bônus de atack: '] = (Atributos("bõnus de atack"))
     break
-mostraTudo(jogadores)
+for k, v in jogadores.items():
+        print(f'{k} = {v}')
