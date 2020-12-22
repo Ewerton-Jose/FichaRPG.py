@@ -29,13 +29,25 @@ jogadores = {}
 
 print("-" * 25)
 print("Alistamento de Personagem")
+print("OBS: Caso o personagem tenha uma caracteristica desconhecida, bote -1")
 while True:
-    jogadores['Nome: '] = (str(input("Nome do Personagem: ")))
-    jogadores['Idade: '] = (int(input("Idade: ")))
-    jogadores['Raça: '] = (str(input("Raça: ")))
-    jogadores['Espécie: '] = (str(input("Espécie: ")))
-    jogadores['Classe: '] = (str(input("classe: ")))
-    jogadores['Gênero: '] = (str(input("Gênero: ")))
+    jogadores['Nome: '] = (str(input("Nome do Personagem: ")).strip())
+    while True:
+        try:
+            idade = int(input("Idade: "))
+            if idade == (-1):
+                jogadores['Idade'] = "Desconhecida"
+            else:
+                jogadores['Idade: '] = idade
+        except:
+            print('\033[31mCaso o personagem tenha idade desconhecida bote -1\033[m')
+        else:
+            break
+
+    jogadores['Raça: '] = (str(input("Raça: "))).strip().capitalize()
+    jogadores['Espécie: '] = (str(input("Espécie: "))).strip().capitalize()
+    jogadores['Classe: '] = (str(input("classe: "))).strip().capitalize()
+    jogadores['Gênero: '] = (str(input("Gênero: "))).strip().capitalize()
     print("Agora vamos para os atributos do seu personagem")
     print('OBS: LD siginifica os "Lados do Dado"\nE "QD" significa "Quantos Dados"')
     jogadores['Vida: '] = (Atributos("Vida"))
@@ -44,5 +56,12 @@ while True:
     jogadores['Carisma: '] = Atributos("carisma")
     jogadores['Bônus de atack: '] = (Atributos("bõnus de atack"))
     break
+print('Carregando...')
+time.sleep(2)
+print('------------ficha-------------')
 for k, v in jogadores.items():
+    if v == "-1" or v == '':
+        print(f'{k} = Desconhecida')
+    else:
         print(f'{k} = {v}')
+lin()

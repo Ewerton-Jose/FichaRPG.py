@@ -1,4 +1,2 @@
-pessoa = {}
-pessoa['peso'] = int(input("Peso: "))
-pessoa['Nome'] = str(input("Nome: "))
-print(pessoa)
+x = str(input("Nome: ")).strip()
+print(x)
