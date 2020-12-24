@@ -25,7 +25,11 @@ def Atributos(x = ''):
 def lin(x = 25):
     print('-' * x)
 
+def cabeçalho(x=''):
+    print(f"------------{x}------------")
+
 jogadores = {}
+objetos = ["Algemas", "Corda (15m)", "Formão","Armadilha de urso","Corneta" ,"Fragância de animal", "Bolas de gude", "Corrente (3m)", "Frasco de ácido", "Broca de mão", "Espelho de aço",  "Frasco de veneno", "Cabo de aço", "Espigões de Ferro", "Gancho de escalada", "Cola Estrepe", "Gazuas (3)", "Giz", "Odre", "Saco de dormir", "Graxa", "Pá", "Saco Grande", "Isqueiro", "Pé de cabra", "Serra de Arco", "Lanterna", "Óleo Rações (3)", "Tenaz", "Lima", "Rede de pesca", "Tocha", "Martelo", "Remédio (3)","Vara de 3m"]
 
 print("-" * 25)
 print("Alistamento de Personagem")
@@ -44,24 +48,25 @@ while True:
         else:
             break
 
-    jogadores['Raça: '] = (str(input("Raça: "))).strip().capitalize()
-    jogadores['Espécie: '] = (str(input("Espécie: "))).strip().capitalize()
-    jogadores['Classe: '] = (str(input("classe: "))).strip().capitalize()
-    jogadores['Gênero: '] = (str(input("Gênero: "))).strip().capitalize()
+    jogadores['Raça '] = (str(input("Raça: "))).strip().capitalize()
+    jogadores['Espécie '] = (str(input("Espécie: "))).strip().capitalize()
+    jogadores['Classe '] = (str(input("Classe: "))).strip().capitalize()
+    jogadores['Gênero '] = (str(input("Gênero: "))).strip().capitalize()
     print("Agora vamos para os atributos do seu personagem")
     print('OBS: LD siginifica os "Lados do Dado"\nE "QD" significa "Quantos Dados"')
-    jogadores['Vida: '] = (Atributos("Vida"))
-    jogadores['Atack: '] = Atributos("Atack")
-    jogadores['Defesa: '] = (Atributos("Defesa"))
-    jogadores['Carisma: '] = Atributos("carisma")
-    jogadores['Bônus de atack: '] = (Atributos("bõnus de atack"))
+    jogadores['Vida '] = (Atributos("Vida"))
+    jogadores['Atack '] = Atributos("Atack")
+    jogadores['Defesa '] = (Atributos("Defesa"))
+    jogadores['Carisma '] = Atributos("Carisma")
+    jogadores['Bônus de atack '] = (Atributos("Bônus de atack"))
     break
 print('Carregando...')
 time.sleep(2)
-print('------------ficha-------------')
+cabeçalho("Ficha")
 for k, v in jogadores.items():
     if v == "-1" or v == '':
         print(f'{k} = Desconhecida')
     else:
         print(f'{k} = {v}')
+    time.sleep(0.5)
 lin()

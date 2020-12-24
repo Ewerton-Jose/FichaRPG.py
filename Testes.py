@@ -1,2 +1,4 @@
-x = str(input("Nome: ")).strip()
-print(x)
+import random
+x = ["Bob","Lord","Nelson","Clayton"]
+y = random.shuffle(x)
+print(y)
