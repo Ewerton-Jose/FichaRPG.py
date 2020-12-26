@@ -8,11 +8,12 @@ def dado(x= 1, y = 6):
         l.append(y)
     return l
 
-def Atributos(x = ''):
+def Atributos(x = '',b = 0):
     lin(5)
     print(f'{x}')
     y = int(input("QD: "))
     z = int(input("LD: "))
+    b = int(input("Bônus: "))
     if y == 0 or z == 0:
         print(f"{x} = Sem valor")
         j = 0
