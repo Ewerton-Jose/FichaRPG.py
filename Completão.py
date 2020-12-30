@@ -28,10 +28,10 @@ def analeseInteiro(x=""):
 def Atributos(x = '',b = 0):
     lin(5)
     print(f'{x}')
-    y = analeseInteiro("QD: ")
-    z = analeseInteiro("LD: ")
+    y = analeseInteiro("\033[34mQD: ")
+    z = analeseInteiro("LD: \033[m")
     if y == 0 or z == 0:
-        print(f"{x} = Sem valor")
+        print(f"{x} = \033[31mSem valor\033[m")
         j = 0
     else:
         b = analeseInteiro("Bônus: ")
@@ -52,12 +52,12 @@ fala = ["Anedotas", "Discurso Florido", "Fala rápido","Articulador" ,"Divaga" ,
 aparência = ["Abatido", "Bonito", "Doentio","Altaneiro", "Bruto" ,"Elegante","Animado" ,"Corpulento" ,"Enrugado","Aquilino" ,"Definido" ,"Entroncado","Atlético" ,"Delicado" ,"Envelhecido","Atraente" ,"Deslumbrante" ,"Esbelto","Escultural", "Inquieto" ,"Robusto","Esguio", "Musculoso" ,"Sarado","Esquelético" ,"Peludo" ,"Sensual","Estúpido", "Rechonchudo" ,"Sólido","Grisalho" ,"Repulsivo" ,"Vigoroso","Indeciso" ,"Rígido" ,"Viril"]
 detalheFisico = ["Barba grande", "Cabelo enrolado", "Cicatrizes de queimadura","Bigode", "Cabelo oleoso", "Cicatrizes de rituais","Cabeça raspada", "Cabelo trançado", "Costeletas","Cabelo cacheado" ,"Cicatrizes de ácido" ,"Dente de ouro","Cabelo comprido", "Cicatrizes de batalha", "Dente Faltando","Cabelo emaranhado" ,"Cicatrizes de flagelação", "Dreadlocks","Marca de nascença" ,"Pele bronzeada", "Sobrancelhas espessas","Marca pessoal", "Pele escura", "Sotaque exótico","Nariz quebrado", "Pele pálida", "Tatuagens", "Nove dedos", "Piercings", "Topete", "Orelha Faltando" ,"Queimadura de sol", "Um olho","Pele amarelada" ,"Sarda", "Voz rouca"]
 origem = ["Agiota", "Caçador de Recompensa", "Contorcionista","Alquimista", "Carrasco", "Contrabandista","Arrombador", "Cavaleiro andante", "Coveiro","Artista de rua", "Chantagista", "Cultista","Batedor de carteiras", "Charlatão", "Cunhador","Caçador de ratos ","Cobrador Desertor","Envenenador", "Limpa-chaminés", "Profeta louco","Escravo", "Lutador de rua", "Receptador","Escravo", "remador", "Mascate", "Salteador da estrada","Escrivão", "Menor abandonado", "Seqüestrador", "Falsificador", "Mercenário", "Tatuador", "Jogador", "Príncipe mendigo", "Vidente"]
-vestimenta = []
-personalidade = []
+vestimenta = ["Alta costura", "Cerimonial", "Desgastada","Amassada", "Chamuscada", "Elegante","Anacrônica Com laços", "Encardida","Antiga", "Curta", "Esfarrapada","Bordada", "Decadente", "Excêntrica","Brega", "Deselegante", "Exótica","Extravagante", "Manchada de comida", "Perfumada","Farda", "Manchada de lama", "Prática","Fora de catálogo", "Manchada de sangue", "Rasgada de batalha","Formal", "Manchada de vinho", "Remendada","Larga", "Ornamentada", "Requintada","Luxuosa", "Padrão", "Vulgar"]
+personalidade = ["Alegre", "Cabeça quente", "Esperto","Amargo", "Cauteloso", "Estoico","Ameaçador", "Contrariador","Honrado","Arrogante", "Covarde", "Inquisitivo","Astuto" ,"Dominador", "Irascível","Bravo", "Espaçoso", "Justo","Leal", "Preguiçoso", "Sem coração","Mal humorado", "Protetor", "Sereno","Nervoso", "Rude", "Sociável","Orgulhoso", "Sabichão", "Solitário","Piadista", "Sarcástico", "Suspeito","Planejador", "Selvagem", "Teimoso"]
 
 print("-" * 25)
-print("Alistamento de Personagem")
-print("OBS: Caso o personagem tenha uma caracteristica desconhecida, bote -1")
+print("\033[35mAlistamento de Personagem")
+print("\033[33mOBS: Caso o personagem tenha uma informação desconhecida, bote -1\033[m")
 while True:
     jogadores['Nome: '] = (str(input("Nome do Personagem: ")).strip())
     while True:
@@ -76,10 +76,28 @@ while True:
     jogadores['Espécie '] = (str(input("Espécie: "))).strip().capitalize()
     jogadores['Classe '] = (str(input("Classe: "))).strip().capitalize()
     jogadores['Gênero '] = (str(input("Gênero: "))).strip().capitalize()
-    jogadores['Fala '] = random.choice(fala)
-    jogadores['Aparência '] = random.choice(aparência)
-    jogadores['Detalhe físico '] = random.choice(detalheFisico)
-    jogadores["Origem "] = random.choice(origem)
+    lin()
+    PouR = str(input("\033[33mAgora vai vim a aparência do seu personagem!\nCaso você queira personalizado digite P\nCaso você queira ir no aleatório digite R\n\033[mSua opção[S/R]: "))[0].upper().strip()
+    lin()
+    time.sleep(0.5)
+    while PouR not in "PR":
+        PouR = str(input("\033[31mApenas P ou R: \033[m")).strip().upper()
+        
+    if PouR == "R":   
+        jogadores['Fala '] = random.choice(fala)
+        jogadores['Aparência '] = random.choice(aparência)
+        jogadores['Detalhe físico '] = random.choice(detalheFisico)
+        jogadores['Origem '] = random.choice(origem)
+        jogadores['Vestimenta '] = random.choice(vestimenta)
+        jogadores['Personalidae '] = random.choice(personalidade)
+        print("\033[33mRandomizado\033[m")
+    else:
+        jogadores['Fala '] = str(input("Fala: "))
+        jogadores['Aparência '] = str(input("Apar~encia: "))
+        jogadores['Detalhe físico '] = str(input("Detalhe Físico: "))
+        jogadores['Origem '] = str(input("Origem: "))
+        jogadores['Vestimenta '] = str(input("Vestimenta: "))
+        jogadores['Personalidae '] = str(input("Personalidade: "))
     print("Agora vamos para os atributos do seu personagem")
     print('OBS: LD siginifica os "Lados do Dado"\nE "QD" significa "Quantos Dados"')
     jogadores['Vida '] = (Atributos("Vida"))
@@ -94,8 +112,10 @@ cabeçalho("Ficha")
 for k, v in jogadores.items():
     if v == "-1" or v == '':
         print(f'{k}= \033[31mDesconhecida\033[m')
+    elif v == 0:
+        print(f'{k}= \033[33m{v}\033[m')
     else:
-        print(f'{k} = {v}')
+        print(f'{k}= \033[32m{v}\033[m')
     time.sleep(0.5)
 lin()
 time.sleep(120)
