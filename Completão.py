@@ -77,7 +77,7 @@ while True:
     jogadores['Classe '] = (str(input("Classe: "))).strip().capitalize()
     jogadores['Gênero '] = (str(input("Gênero: "))).strip().capitalize()
     lin()
-    PouR = str(input("\033[33mAgora vai vim a aparência do seu personagem!\nCaso você queira personalizado digite P\nCaso você queira ir no aleatório digite R\n\033[mSua opção[S/R]: "))[0].upper().strip()
+    PouR = str(input("\033[33mAgora vai vim a aparência do seu personagem!\nCaso você queira personalizado digite P\nCaso você queira ir no aleatório digite R\n\033[mSua opção[S/R]: ")).upper().strip()
     lin()
     time.sleep(0.5)
     while PouR not in "PR":
@@ -105,15 +105,18 @@ while True:
     jogadores['Defesa '] = (Atributos("Defesa"))
     jogadores['Carisma '] = Atributos("Carisma")
     jogadores['Bônus de atack '] = (Atributos("Bônus de atack"))
+    random.shuffle(objetos)
+    itens = [objetos[0],objetos[1],objetos[2],objetos[3],objetos[4],objetos[5]]
+    jogadores["Objetos "] = itens
     break
 print('Carregando...')
 time.sleep(2)
 cabeçalho("Ficha")
 for k, v in jogadores.items():
     if v == "-1" or v == '':
-        print(f'{k}= \033[31mDesconhecida\033[m')
+        print(f'{k}= \033[31mDesconhecida\033[m')     
     elif v == 0:
-        print(f'{k}= \033[33m{v}\033[m')
+        print(f'{k}= \033[33m{v}\033[m')     
     else:
         print(f'{k}= \033[32m{v}\033[m')
     time.sleep(0.5)
