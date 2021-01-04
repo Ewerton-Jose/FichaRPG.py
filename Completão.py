@@ -46,6 +46,35 @@ def lin(x = 25):
 def cabeçalho(x=''):
     print(f"------------{x}------------")
 
+def arquivoExiste(nome):
+    try:
+        a = open(nome, 'rt')
+        a.close()
+    except:
+        return False
+    else:
+        return True
+
+def criarArquivo(nome):
+    a = open(nome, 'wt+')
+    a.close()
+    return a
+
+def lerArquivos(nome):
+    try:
+        print("------")
+        a = open(nome, 'rt')
+    except:
+        print("erro")
+    else:
+        print(a.readline())
+
+arq = "dadosPersonagens.TXT"
+if not arquivoExiste(arq):
+    criarArquivo(arq)
+else:
+    lerArquivos(arq)
+
 jogadores = {}
 objetos = ["Algemas", "Corda (15m)", "Formão","Armadilha de urso","Corneta" ,"Fragância de animal", "Bolas de gude", "Corrente (3m)", "Frasco de ácido", "Broca de mão", "Espelho de aço",  "Frasco de veneno", "Cabo de aço", "Espigões de Ferro", "Gancho de escalada", "Cola Estrepe", "Gazuas (3)", "Giz", "Odre", "Saco de dormir", "Graxa", "Pá", "Saco Grande", "Isqueiro", "Pé de cabra", "Serra de Arco", "Lanterna", "Óleo Rações (3)", "Tenaz", "Lima", "Rede de pesca", "Tocha", "Martelo", "Remédio (3)","Vara de 3m"]
 fala = ["Anedotas", "Discurso Florido", "Fala rápido","Articulador" ,"Divaga" ,"Fala sozinho","Casual demais", "Dizeres Pitorescos", "Fatos Aleatórios","Chiador", "Fala alto", "Formal","Direto" ,"Fala arrastado", "Gago","Discursar" ,"Fala pausada", "Hipnótico","Interruptor", "Narra Risadas","Lacônico" ,"Oculto", "Robótico","Linguagem de rua", "Pausas longas", "Sussurra","Monótono", "Respiração funda", "Voz Expansiva","Muda de assunto", "Rimador", "Voz grave","Murmúrios", "Rir" ,"Voz Melodiosa"]
@@ -98,6 +127,8 @@ while True:
         jogadores['Origem '] = str(input("Origem: "))
         jogadores['Vestimenta '] = str(input("Vestimenta: "))
         jogadores['Personalidae '] = str(input("Personalidade: "))
+    itens = [objetos[0],objetos[1],objetos[2],objetos[3],objetos[4],objetos[5]]
+    jogadores["Objetos "] = itens
     print("Agora vamos para os atributos do seu personagem")
     print('OBS: LD siginifica os "Lados do Dado"\nE "QD" significa "Quantos Dados"')
     jogadores['Vida '] = (Atributos("Vida"))
@@ -106,8 +137,7 @@ while True:
     jogadores['Carisma '] = Atributos("Carisma")
     jogadores['Bônus de atack '] = (Atributos("Bônus de atack"))
     random.shuffle(objetos)
-    itens = [objetos[0],objetos[1],objetos[2],objetos[3],objetos[4],objetos[5]]
-    jogadores["Objetos "] = itens
+    
     break
 print('Carregando...')
 time.sleep(2)
