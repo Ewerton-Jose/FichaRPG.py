@@ -49,6 +49,18 @@ def armadura():
         l = f'{x}'
     return l
 
+def analeseAtributo(x = ""):
+    while True:
+        try:
+            y = analeseInteiro(x)
+            while y > 2 or y < 0:
+                y = analeseInteiro("\033[31mSó 2, 1 ou 0: \033[m")
+        except:
+            print("Deu algum erro")
+        else:
+            return y
+            break
+
 def lin(x = 25):
     print('-' * x)
 
@@ -111,12 +123,12 @@ while True:
     itens = [objetos[0],objetos[1],objetos[2],objetos[3],objetos[4],objetos[5]]
     jogadores['Armadura: '] = armadura()
     jogadores["Objetos "] = itens
-    jogadores['Saúde '] = analeseInteiro("Saúde: ")
+    jogadores['Saúde '] = 4
     print("\033[33mAgora vamos para os atributos do seu personagem")
     print('OBS: LD siginifica os "Lados do Dado"\nE "QD" significa "Quantos Dados\033[m"')
-    jogadores['Força '] = Atributos("Força")
-    jogadores['Destreza '] = Atributos("Destreza")
-    jogadores['Vontade '] = Atributos("Vontade")
+    jogadores['Força '] = analeseAtributo("Força: ")
+    jogadores['Destreza '] = analeseAtributo("Destreza: ")
+    jogadores['Vontade '] = analeseAtributo("Vontade: ")
 #   jogadores['Bônus de atack '] = (Atributos("Bônus de atack"))
     random.shuffle(objetos)
     
