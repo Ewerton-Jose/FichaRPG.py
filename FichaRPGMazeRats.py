@@ -40,6 +40,15 @@ def Atributos(x = '',b = 0):
     return j
     lin(5)
 
+def armadura():
+    x = analeseInteiro("Armadura: ")
+    y = analeseInteiro("Bônus da armadura: ")
+    if y > 0:
+        l = f'{x} + {y} = {x + y}'
+    else:
+        l = f'{x}'
+    return l
+
 def lin(x = 25):
     print('-' * x)
 
@@ -59,7 +68,7 @@ print("-" * 25)
 print("\033[35mAlistamento de Personagem")
 print("\033[33mOBS: Caso o personagem tenha uma informação desconhecida, bote -1\033[m")
 while True:
-    jogadores['Nome: '] = (str(input("Nome do Personagem: ")).strip())
+    jogadores['Nome: '] = (str(input("Nome do Personagem: ")).strip()).capitalize()
     while True:
         try:
             idade = int(input("Idade: "))
@@ -73,11 +82,11 @@ while True:
             break
 
     jogadores['Raça '] = (str(input("Raça: "))).strip().capitalize()
-    jogadores['Espécie '] = (str(input("Espécie: "))).strip().capitalize()
+#    jogadores['Espécie '] = (str(input("Espécie: "))).strip().capitalize()
     jogadores['Classe '] = (str(input("Classe: "))).strip().capitalize()
     jogadores['Gênero '] = (str(input("Gênero: "))).strip().capitalize()
     lin()
-    PouR = str(input("\033[33mAgora vai vim a aparência do seu personagem!\nCaso você queira personalizado digite P\nCaso você queira ir no aleatório digite R\n\033[mSua opção[S/R]: ")).upper().strip()
+    PouR = str(input("\033[33mAgora vai vim a aparência do seu personagem!\nCaso você queira personalizado digite P\nCaso você queira ir no aleatório digite R\n\033[mSua opção[P/R]: ")).upper().strip()
     lin()
     time.sleep(0.5)
     while PouR not in "PR":
@@ -90,23 +99,25 @@ while True:
         jogadores['Origem '] = random.choice(origem)
         jogadores['Vestimenta '] = random.choice(vestimenta)
         jogadores['Personalidae '] = random.choice(personalidade)
-        print("\033[33mRandomizado\033[m")
+        time.sleep(0.5)
+        print("\033[32mCaracteristicas Salvas\033[m")
     else:
-        jogadores['Fala '] = str(input("Fala: "))
-        jogadores['Aparência '] = str(input("Apar~encia: "))
-        jogadores['Detalhe físico '] = str(input("Detalhe Físico: "))
-        jogadores['Origem '] = str(input("Origem: "))
-        jogadores['Vestimenta '] = str(input("Vestimenta: "))
-        jogadores['Personalidae '] = str(input("Personalidade: "))
+        jogadores['Fala '] = str(input("Fala: ")).capitalize()
+        jogadores['Aparência '] = str(input("Aparência: ")).capitalize()
+        jogadores['Detalhe físico '] = str(input("Detalhe Físico: ")).capitalize()
+        jogadores['Origem '] = str(input("Origem: ")).capitalize()
+        jogadores['Vestimenta '] = str(input("Vestimenta: ")).capitalize()
+        jogadores['Personalidae '] = str(input("Personalidade: ")).capitalize()
     itens = [objetos[0],objetos[1],objetos[2],objetos[3],objetos[4],objetos[5]]
+    jogadores['Armadura: '] = armadura()
     jogadores["Objetos "] = itens
-    print("Agora vamos para os atributos do seu personagem")
-    print('OBS: LD siginifica os "Lados do Dado"\nE "QD" significa "Quantos Dados"')
-    jogadores['Vida '] = (Atributos("Vida"))
-    jogadores['Atack '] = Atributos("Atack")
-    jogadores['Defesa '] = (Atributos("Defesa"))
-    jogadores['Carisma '] = Atributos("Carisma")
-    jogadores['Bônus de atack '] = (Atributos("Bônus de atack"))
+    jogadores['Saúde '] = analeseInteiro("Saúde: ")
+    print("\033[33mAgora vamos para os atributos do seu personagem")
+    print('OBS: LD siginifica os "Lados do Dado"\nE "QD" significa "Quantos Dados\033[m"')
+    jogadores['Força '] = Atributos("Força")
+    jogadores['Destreza '] = Atributos("Destreza")
+    jogadores['Vontade '] = Atributos("Vontade")
+#   jogadores['Bônus de atack '] = (Atributos("Bônus de atack"))
     random.shuffle(objetos)
     
     break
