@@ -20,25 +20,10 @@ def analeseInteiro(x=""):
         try:
             y = int(input(x))
         except:
-            print("\033[31mSó numeros\033[m")
+            print("\033[31mSó numeros inteiros\033[m")
         else:
             return y
             break
-
-def Atributos(x = '',b = 0):
-    lin(5)
-    print(f'{x}')
-    y = analeseInteiro("\033[34mQD: ")
-    z = analeseInteiro("LD: \033[m")
-    if y == 0 or z == 0:
-        print(f"{x} = \033[31mSem valor\033[m")
-        j = 0
-    else:
-        b = analeseInteiro("Bônus: ")
-        j = dado(y, z, b)
-        print(f'{x} = {j}')
-    return j
-    lin(5)
 
 def armadura():
     x = analeseInteiro("Armadura: ")
@@ -75,6 +60,14 @@ detalheFisico = ["Barba grande", "Cabelo enrolado", "Cicatrizes de queimadura","
 origem = ["Agiota", "Caçador de Recompensa", "Contorcionista","Alquimista", "Carrasco", "Contrabandista","Arrombador", "Cavaleiro andante", "Coveiro","Artista de rua", "Chantagista", "Cultista","Batedor de carteiras", "Charlatão", "Cunhador","Caçador de ratos ","Cobrador Desertor","Envenenador", "Limpa-chaminés", "Profeta louco","Escravo", "Lutador de rua", "Receptador","Escravo", "remador", "Mascate", "Salteador da estrada","Escrivão", "Menor abandonado", "Seqüestrador", "Falsificador", "Mercenário", "Tatuador", "Jogador", "Príncipe mendigo", "Vidente"]
 vestimenta = ["Alta costura", "Cerimonial", "Desgastada","Amassada", "Chamuscada", "Elegante","Anacrônica Com laços", "Encardida","Antiga", "Curta", "Esfarrapada","Bordada", "Decadente", "Excêntrica","Brega", "Deselegante", "Exótica","Extravagante", "Manchada de comida", "Perfumada","Farda", "Manchada de lama", "Prática","Fora de catálogo", "Manchada de sangue", "Rasgada de batalha","Formal", "Manchada de vinho", "Remendada","Larga", "Ornamentada", "Requintada","Luxuosa", "Padrão", "Vulgar"]
 personalidade = ["Alegre", "Cabeça quente", "Esperto","Amargo", "Cauteloso", "Estoico","Ameaçador", "Contrariador","Honrado","Arrogante", "Covarde", "Inquisitivo","Astuto" ,"Dominador", "Irascível","Bravo", "Espaçoso", "Justo","Leal", "Preguiçoso", "Sem coração","Mal humorado", "Protetor", "Sereno","Nervoso", "Rude", "Sociável","Orgulhoso", "Sabichão", "Solitário","Piadista", "Sarcástico", "Suspeito","Planejador", "Selvagem", "Teimoso"]
+l1 = [2,1,0]
+l2 = [2,0,1]
+l3 = [1,2,0]
+l4 = [0,2,1]
+l5 = [1,0,2]
+l6 = [0,1,2]
+tl = [l1, l2, l3, l4, l5, l6]
+contador = 1
 
 print("-" * 25)
 print("\033[35mAlistamento de Personagem")
@@ -94,15 +87,14 @@ while True:
             break
 
     jogadores['Raça '] = (str(input("Raça: "))).strip().capitalize()
-#    jogadores['Espécie '] = (str(input("Espécie: "))).strip().capitalize()
     jogadores['Classe '] = (str(input("Classe: "))).strip().capitalize()
     jogadores['Gênero '] = (str(input("Gênero: "))).strip().capitalize()
     lin()
     PouR = str(input("\033[33mAgora vai vim a aparência do seu personagem!\nCaso você queira personalizado digite P\nCaso você queira ir no aleatório digite R\n\033[mSua opção[P/R]: ")).upper().strip()
     lin()
-    time.sleep(0.5)
     while PouR not in "PR":
         PouR = str(input("\033[31mApenas P ou R: \033[m")).strip().upper()
+    time.sleep(0.2)
         
     if PouR == "R":   
         jogadores['Fala '] = random.choice(fala)
@@ -111,7 +103,7 @@ while True:
         jogadores['Origem '] = random.choice(origem)
         jogadores['Vestimenta '] = random.choice(vestimenta)
         jogadores['Personalidae '] = random.choice(personalidade)
-        time.sleep(0.5)
+        time.sleep(0.3)
         print("\033[32mCaracteristicas Salvas\033[m")
     else:
         jogadores['Fala '] = str(input("Fala: ")).capitalize()
@@ -120,17 +112,36 @@ while True:
         jogadores['Origem '] = str(input("Origem: ")).capitalize()
         jogadores['Vestimenta '] = str(input("Vestimenta: ")).capitalize()
         jogadores['Personalidae '] = str(input("Personalidade: ")).capitalize()
+    random.shuffle(objetos)
     itens = [objetos[0],objetos[1],objetos[2],objetos[3],objetos[4],objetos[5]]
+    lin()
     jogadores['Armadura: '] = armadura()
     jogadores["Objetos "] = itens
     jogadores['Saúde '] = 4
     print("\033[33mAgora vamos para os atributos do seu personagem")
-    print('OBS: LD siginifica os "Lados do Dado"\nE "QD" significa "Quantos Dados\033[m"')
-    jogadores['Força '] = analeseAtributo("Força: ")
-    jogadores['Destreza '] = analeseAtributo("Destreza: ")
-    jogadores['Vontade '] = analeseAtributo("Vontade: ")
-#   jogadores['Bônus de atack '] = (Atributos("Bônus de atack"))
-    random.shuffle(objetos)
+    print("\033[33mRolar dado ou Personalizado?\033[m")
+    ePOUR = str(input("Sua opção[P\R]: ")).strip().upper()
+    while ePOUR not in "PR":
+        ePOUR = str(input("\033[31mApenas P ou R: \033[m")).strip().upper()
+    
+    if ePOUR == 'R':
+        lescolhida = random.choice(tl)
+        jogadores['Força '] = f'+{lescolhida[0]}'
+        jogadores['Destreza '] = f'+{lescolhida[1]}'
+        jogadores['Vontade '] = f'+{lescolhida[2]}'
+    else:
+        print("   Forc. Des. Von.")
+        for elemento in tl:
+            print(f'{contador} |  +{elemento[0]}   +{elemento[1]}   +{elemento[2]}')
+            contador = contador + 1
+        escolhaatributo = analeseInteiro("Qual é sua opcão: ")
+        while escolhaatributo > 7 or escolhaatributo <= -1:
+            escolhaatributo = analeseInteiro("\033[31mEscolha um numero válido: \033[m")
+        escolhaatributo = escolhaatributo - 1
+        lescolhida2 = tl[escolhaatributo]
+        jogadores['Força '] = lescolhida2[0]
+        jogadores['Destreza '] = lescolhida2[1]
+        jogadores['Vontade '] = lescolhida2[2]
     
     break
 print('Carregando...')
@@ -138,9 +149,7 @@ time.sleep(2)
 cabeçalho("Ficha")
 for k, v in jogadores.items():
     if v == "-1" or v == '':
-        print(f'{k}= \033[31mDesconhecida\033[m')     
-    elif v == 0:
-        print(f'{k}= \033[33m{v}\033[m')     
+        print(f'{k}= \033[31mDesconhecida\033[m')          
     else:
         print(f'{k}= \033[32m{v}\033[m')
     time.sleep(0.5)
