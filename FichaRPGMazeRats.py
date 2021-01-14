@@ -68,6 +68,7 @@ l5 = [1,0,2]
 l6 = [0,1,2]
 tl = [l1, l2, l3, l4, l5, l6]
 contador = 1
+contaLinha = 0
 
 print("-" * 25)
 print("\033[35mAlistamento de Personagem")
@@ -106,6 +107,13 @@ while True:
         time.sleep(0.3)
         print("\033[32mCaracteristicas Salvas\033[m")
     else:
+        for element in fala:
+            print(f'{"^5":element}',end = '\     ')
+            contaLinha = contaLinha + 1
+            if contaLinha == 4:
+                print()
+                contaLinha = 0
+
         jogadores['Fala '] = str(input("Fala: ")).capitalize()
         jogadores['Aparência '] = str(input("Aparência: ")).capitalize()
         jogadores['Detalhe físico '] = str(input("Detalhe Físico: ")).capitalize()
