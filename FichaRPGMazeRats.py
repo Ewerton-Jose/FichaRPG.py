@@ -1,20 +1,6 @@
 import random
 import time
 
-def dado(x= 1, y = 6, z = 0):
-    l = []
-    cont = z
-    for c in range(0,x):
-        y = random.randint(1,y)
-        cont += y
-        l.append(y)
-    if z != 0:
-        bônus = [f'somando com o bônus(+{z}) = {cont}']
-    else:
-        bônus = [f"soma = {cont}"]
-    l.append(bônus)
-    return l
-
 def analeseInteiro(x=""):
     while True:
         try:
@@ -54,7 +40,7 @@ def cabeçalho(x=''):
 
 jogadores = {}
 objetos = ["Algemas", "Corda (15m)", "Formão","Armadilha de urso","Corneta" ,"Fragância de animal", "Bolas de gude", "Corrente (3m)", "Frasco de ácido", "Broca de mão", "Espelho de aço",  "Frasco de veneno", "Cabo de aço", "Espigões de Ferro", "Gancho de escalada", "Cola Estrepe", "Gazuas (3)", "Giz", "Odre", "Saco de dormir", "Graxa", "Pá", "Saco Grande", "Isqueiro", "Pé de cabra", "Serra de Arco", "Lanterna", "Óleo Rações (3)", "Tenaz", "Lima", "Rede de pesca", "Tocha", "Martelo", "Remédio (3)","Vara de 3m"]
-fala = ("Anedotas", "Discurso Florido", "Fala rápido","Articulador" ,"Divaga" ,"Fala sozinho","Casual demais", "Dizeres Pitorescos", "Fatos Aleatórios","Chiador", "Fala alto", "Formal","Direto" ,"Fala arrastado", "Gago","Discursar" ,"Fala pausada", "Hipnótico","Interruptor", "Narra Risadas","Lacônico" ,"Oculto", "Robótico","Linguagem de rua", "Pausas longas", "Sussurra","Monótono", "Respiração funda", "Voz Expansiva","Muda de assunto", "Rimador", "Voz grave","Murmúrios", "Rir" ,"Voz Melodiosa")
+fala = ["Anedotas", "Discurso Florido", "Fala rápido","Articulador" ,"Divaga" ,"Fala sozinho","Casual demais", "Dizeres Pitorescos", "Fatos Aleatórios","Chiador", "Fala alto", "Formal","Direto" ,"Fala arrastado", "Gago","Discursar" ,"Fala pausada", "Hipnótico","Interruptor", "Narra Risadas","Lacônico" ,"Oculto", "Robótico","Linguagem de rua", "Pausas longas", "Sussurra","Monótono", "Respiração funda", "Voz Expansiva","Muda de assunto", "Rimador", "Voz grave","Murmúrios", "Rir" ,"Voz Melodiosa"]
 aparência = ["Abatido", "Bonito", "Doentio","Altaneiro", "Bruto" ,"Elegante","Animado" ,"Corpulento" ,"Enrugado","Aquilino" ,"Definido" ,"Entroncado","Atlético" ,"Delicado" ,"Envelhecido","Atraente" ,"Deslumbrante" ,"Esbelto","Escultural", "Inquieto" ,"Robusto","Esguio", "Musculoso" ,"Sarado","Esquelético" ,"Peludo" ,"Sensual","Estúpido", "Rechonchudo" ,"Sólido","Grisalho" ,"Repulsivo" ,"Vigoroso","Indeciso" ,"Rígido" ,"Viril"]
 detalheFisico = ["Barba grande", "Cabelo enrolado", "Cicatrizes de queimadura","Bigode", "Cabelo oleoso", "Cicatrizes de rituais","Cabeça raspada", "Cabelo trançado", "Costeletas","Cabelo cacheado" ,"Cicatrizes de ácido" ,"Dente de ouro","Cabelo comprido", "Cicatrizes de batalha", "Dente Faltando","Cabelo emaranhado" ,"Cicatrizes de flagelação", "Dreadlocks","Marca de nascença" ,"Pele bronzeada", "Sobrancelhas espessas","Marca pessoal", "Pele escura", "Sotaque exótico","Nariz quebrado", "Pele pálida", "Tatuagens", "Nove dedos", "Piercings", "Topete", "Orelha Faltando" ,"Queimadura de sol", "Um olho","Pele amarelada" ,"Sarda", "Voz rouca"]
 origem = ["Agiota", "Caçador de Recompensa", "Contorcionista","Alquimista", "Carrasco", "Contrabandista","Arrombador", "Cavaleiro andante", "Coveiro","Artista de rua", "Chantagista", "Cultista","Batedor de carteiras", "Charlatão", "Cunhador","Caçador de ratos ","Cobrador Desertor","Envenenador", "Limpa-chaminés", "Profeta louco","Escravo", "Lutador de rua", "Receptador","Escravo", "remador", "Mascate", "Salteador da estrada","Escrivão", "Menor abandonado", "Seqüestrador", "Falsificador", "Mercenário", "Tatuador", "Jogador", "Príncipe mendigo", "Vidente"]
@@ -107,12 +93,6 @@ while True:
         time.sleep(0.3)
         print("\033[32mCaracteristicas Salvas\033[m")
     else:
-        for element in fala:
-            print(f'{element,:.<10}',end ='')
-            contaLinha = contaLinha + 1
-            if contaLinha == 4:
-                print()
-                contaLinha = 0
         jogadores['Fala '] = str(input("Fala: ")).capitalize()
         jogadores['Aparência '] = str(input("Aparência: ")).capitalize()
         jogadores['Detalhe físico '] = str(input("Detalhe Físico: ")).capitalize()
@@ -122,8 +102,8 @@ while True:
     random.shuffle(objetos)
     itens = [objetos[0],objetos[1],objetos[2],objetos[3],objetos[4],objetos[5]]
     lin()
-    jogadores['Armadura: '] = armadura()
     jogadores["Objetos "] = itens
+    jogadores['Armadura: '] = armadura()
     jogadores['Saúde '] = 4
     print("\033[33mAgora vamos para os atributos do seu personagem")
     print("\033[33mRolar dado ou Personalizado?\033[m")
